@@ -1,0 +1,30 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Arrays;
+
+public class SortByFrequencyOrAlphabet{
+
+     public static void main(String []args){
+         
+        String input[] = {"notebook", "eraser", "notebook", "pencil", "mail", "mail"};
+        HashMap<String, Integer> freq = new HashMap<>();
+        
+        for(String s : input){
+            freq.put(s, freq.getOrDefault(s, 0) + 1);
+        }
+        
+         String ret[] = new String[freq.size()];
+         int i = 0;
+         
+        for(Map.Entry<String, Integer> ent : freq.entrySet()){
+            ret[i++] = ent.getKey() + " " + Integer.toString(ent.getValue());
+        }
+
+        
+        Arrays.sort(ret, (a,b)-> Integer.parseInt(a.split(" ")[1]) > Integer.parseInt(b.split(" ")[1]) ? -1 : Integer.parseInt(b.split(" ")[1]) > Integer.parseInt(a.split(" ")[1]) ? 1 : a.compareTo(b));
+        
+        for(String s : ret){
+            System.out.println(s);
+        }
+     }
+}
